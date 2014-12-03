@@ -3,4 +3,4 @@ mysql --user=genome --host=genome-mysql.cse.ucsc.edu \
    -N \
    -B \
    -D hg19 \
-   -e "SELECT chrom, chromStart, chromEnd, perGc, name from cpgIslandExt”
+   -e "SELECT chrom, chromStart, chromEnd, perGc, name from cpgIslandExt"
