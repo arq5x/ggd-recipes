@@ -1,0 +1,19 @@
+attributes:
+  name: clinvar
+  version: 0.2
+
+recipe:
+  full:
+    recipe_type: bash
+    recipe_cmds:
+      - curl ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/clinvar-latest.vcf.gz
+      - curl ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/clinvar-latest.vcf.gz.tbi
+    recipe_outfiles:
+      - clinvar-latest.vcf.gz
+      - clinvar-latest.vcf.gz.tbi
+  region:
+    recipe_type: bash
+    recipe_cmds: 
+      - tabix ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/clinvar-latest.vcf.gz
+    recipe_outfiles:
+      - clinvar-latest.region.vcf

@@ -1,0 +1,11 @@
+attributes:
+  name: cpg
+  version: 0.1
+
+recipe:
+  full:
+    recipe_type: bash
+    recipe_cmds: 
+      - mysql --user=genome --host=genome-mysql.cse.ucsc.edu -A -N -B -D hg38 -e "SELECT chrom, chromStart, chromEnd, perGc, name from cpgIslandExt"
+    recipe_outfiles:
+      - ucsc.human.b38.cpg
