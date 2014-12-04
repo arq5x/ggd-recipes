@@ -1,0 +1,19 @@
+attributes:
+  name: exac
+  version: 0.2
+
+recipe:
+  full:
+    recipe_type: bash
+    recipe_cmds:
+      - curl ftp://ftp.broadinstitute.org/pub/ExAC_release/release0.2/ExAC.r0.2.sites.vep.vcf.gz
+      - curl ftp://ftp.broadinstitute.org/pub/ExAC_release/release0.2/ExAC.r0.2.sites.vep.vcf.gz.tbi 
+    recipe_outfiles:
+      - ExAC.r0.2.sites.vep.vcf.gz
+      - ExAC.r0.2.sites.vep.vcf.gz.tbi
+  region:
+    recipe_type: bash
+    recipe_cmds: 
+      - tabix ftp://ftp.broadinstitute.org/pub/ExAC_release/release0.2/ExAC.r0.2.sites.vep.vcf.gz
+    recipe_outfiles:
+      - ExAC.r0.2.sites.vep.region.vcf
