@@ -15,7 +15,28 @@ In this case, the recipe would live in this repository under:
 
 	ucsc/human/b38/cpg.yaml
 
+Below is an example recipe for extracting Alu repeats from UCSC based on the RepeatMasker track. Note that the recipt command can include multiple UNIX commands in order to facilitate possibly compex transformation rules.  In other words, we can do MUCh more than simply downloading data from URLs.  We can convert it into useful formats and/or create "meta" datasets based on conversions, trsnformations, etc.  From https://github.com/arq5x/ggd-recipes/blob/master/ucsc/human/b37/alus.yaml:
 
+	attributes:
+	  name: alus
+	  version: 0.1
+
+	recipe:
+	  full:
+	    recipe_type: bash
+	    recipe_cmds: 
+	      - >
+	        echo "chrom\tstart\tend\tdivergence\trep_name\trep_class\trep_family";
+	        mysql --user=genome \
+	              --host=genome-mysql.cse.ucsc.edu \
+	              -A -N -B -D hg19 \
+	              -e "SELECT genoName, genoStart, genoEnd, \
+	                         milliDiv+milliIns+milliDel, repName, repClass, \
+	                         repFamily \
+	                  FROM rmsk WHERE repName like 'Alu%'" \
+	        | sort -k1,1 -k2,2n
+	    recipe_outfiles:
+	      - ucsc.human.b37.alus
     
 
 
