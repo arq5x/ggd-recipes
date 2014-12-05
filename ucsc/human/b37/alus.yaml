@@ -1,0 +1,19 @@
+attributes:
+  name: alus
+  version: 0.1
+
+recipe:
+  full:
+    recipe_type: bash
+    recipe_cmds: 
+      - >
+        mysql --user=genome \
+              --host=genome-mysql.cse.ucsc.edu \
+              -A -N -B -D hg19 \
+              -e "SELECT genoName, genoStart, genoEnd, \
+                         milliDiv+milliIns+milliDel, repName, repClass, \
+                         repFamily \
+                  FROM rmsk WHERE repName like 'Alu%'" \
+        | sort -k1,1 -k2,2n 
+    recipe_outfiles:
+      - ucsc.human.b37.alus
