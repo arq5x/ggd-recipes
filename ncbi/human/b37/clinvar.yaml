@@ -1,13 +1,15 @@
 attributes:
   name: clinvar
   version: 0.2
-
+  sha1:
+    - bd0275c2934b9ea395c5c7e1776ce538bb4e3a1a # VCF
+    - ec44e825a1f9f3d7f582bb489b66bc82c35ea810 # TBI
 recipe:
   full:
     recipe_type: bash
     recipe_cmds:
-      - curl ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/clinvar-latest.vcf.gz
-      - curl ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/clinvar-latest.vcf.gz.tbi
+      - curl -s ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/clinvar-latest.vcf.gz
+      - curl -s ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/clinvar-latest.vcf.gz.tbi
     recipe_outfiles:
       - clinvar-latest.vcf.gz
       - clinvar-latest.vcf.gz.tbi

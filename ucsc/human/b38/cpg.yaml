@@ -1,6 +1,7 @@
 attributes:
   name: cpg
   version: 0.1
+  sha1: 733941698f3759f3ade5bc1b6b436ef621200d5c
 
 recipe:
   full:

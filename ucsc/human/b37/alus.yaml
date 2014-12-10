@@ -1,6 +1,7 @@
 attributes:
   name: alus
   version: 0.1
+  sha1: 5e2466328cda30b51903e74eb1c998fdba56c38c
 
 recipe:
   full:
@@ -14,7 +15,6 @@ recipe:
               -e "SELECT genoName, genoStart, genoEnd, \
                          milliDiv+milliIns+milliDel, repName, repClass, \
                          repFamily \
-                  FROM rmsk WHERE repName like 'Alu%'" \
-        | sort -k1,1 -k2,2n
+                  FROM rmsk WHERE repName like 'Alu%'"
     recipe_outfiles:
       - ucsc.human.b37.alus
