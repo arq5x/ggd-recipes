@@ -1,0 +1,27 @@
+attributes:
+  name: genes
+  version: 0.1
+  sha1: 2fd8a38510736c046c3bda8cb7c038ab1f70e3e7
+
+recipe:
+  full:
+    recipe_type: bash
+    recipe_cmds: 
+      - >
+        echo "chrom\tstart\tend\ttranscript_info\tsize\tstrand";
+        query_biomart.py
+        --dataset hsapiens_gene_ensembl  
+        --atts chromosome_name transcript_start transcript_end
+        external_gene_name ensembl_gene_id ensembl_transcript_id
+        ensembl_peptide_id strand 
+        | awk -v OFS="\t" '{if ($8=="1") \
+                            { \
+                              print $1,$2-1,$3,$4"_"$5"_"$6"_"$7,($3-$2)+1,"+" \
+                            } \
+                            else\
+                            { \
+                              print $1,$2-1,$3,$4"_"$5"_"$6"_"$7,($3-$2)+1,"-" \
+                            }}'
+    recipe_outfiles:
+      - ensembl.human.b38.transcripts
+
