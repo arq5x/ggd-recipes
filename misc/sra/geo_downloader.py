@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Script for automated downloading of
 raw data from GEO database
 Example:
