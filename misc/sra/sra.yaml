@@ -1,0 +1,15 @@
+attributes:
+  name: sradownloader
+  version: 0.1
+
+recipe:
+  full:
+    dependency: 
+        - geo_downloader.py
+    recipe_type: python
+    recipe_cmds:
+      - python geo_downloader.py 
+    recipe_inputs:
+      - --gid
+      - --path
+    recipe_outfiles:
